@@ -112,6 +112,36 @@ button {
       }
     }
   }
+
+  .theme-selector {
+    @include vars.button-base;
+    border: 1px solid var(--grey-2);
+    border-radius: 2px;
+    padding: 3px 8px;
+    font-size: 13px;
+    display: block;
+    width: 85px;
+
+    &:active {
+      border-color: #555;
+    }
+
+    .color-area {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .value {
+      user-select: all;
+    }
+
+    select {
+      background: transparent;
+      padding: 0;
+      border: 0;
+      outline: 0;
+    }
+  }
 }
 
 .output-html {
