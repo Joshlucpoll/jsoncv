@@ -2,6 +2,7 @@ export const storeKeys = {
   cvJSON: 'cvJSON',
   cvSavedTime: 'cvSavedTime',
   primaryColor: 'primary-color',
+  theme: 'theme',
 }
 
 const defaultPrimaryColor = '#2A3FFB'
@@ -19,6 +20,17 @@ export function getCVData() {
   const v = localStorage.getItem(storeKeys.cvJSON)
   if (!v) return
   return JSON.parse(v)
+}
+
+export function saveTheme(theme) {
+  localStorage.setItem(storeKeys.theme, theme)
+  updateSavedTime()
+}
+
+export function getTheme() {
+  const theme = localStorage.getItem(storeKeys.theme)
+  if (!theme) return 'default'
+  return theme
 }
 
 export function getCVSavedTime() {

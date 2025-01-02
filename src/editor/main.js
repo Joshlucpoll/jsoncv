@@ -13,6 +13,7 @@ import {
   getPrimaryColor,
   saveCVJSON,
   savePrimaryColor,
+  saveTheme,
 } from '../lib/store';
 import {
   createElement,
@@ -24,6 +25,7 @@ import {
 import { getCVTitle } from '../themes/data';
 import { registerIconLib } from './je-iconlib';
 import { registerTheme } from './je-theme';
+import { themeNames } from '../themes';
 
 const propertiesInOrder = ['basics', 'education', 'work', 'projects', 'sideProjects', 'skills', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'certificates', 'meta']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
@@ -166,6 +168,12 @@ const $btnLoadSample = $('#fn-load-sample')
 const $btnPrintPreview = $('#fn-print-preview')
 const $inputColorPicker = $('#fn-color-picker')
 const $colorValue = $('.color-picker .value')
+const $themePicker = $('#fn-theme-selector')
+
+themeNames.forEach(themeName => {
+  // Append the new option to the select element
+  $themePicker.append(`<option value="${themeName}">${themeName}</option>`);
+});
 
 const isElementHidden = elt =>
 	! (elt.offsetWidth || elt.offsetHeight || elt.getClientRects().length);
@@ -259,6 +267,11 @@ $inputColorPicker.on('change', (e) => {
   console.log('color', color)
   $colorValue.text(color)
   savePrimaryColor(color)
+})
+
+$themePicker.on('change', (e) => {
+  const selectedTheme = e.target.value;
+  saveTheme(selectedTheme)
 })
 
 const primaryColor = getPrimaryColor()
